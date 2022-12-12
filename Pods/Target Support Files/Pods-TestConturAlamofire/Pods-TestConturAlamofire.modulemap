@@ -1,0 +1,6 @@
+framework module Pods_TestConturAlamofire {
+  umbrella header "Pods-TestConturAlamofire-umbrella.h"
+
+  export *
+  module * { export * }
+}
