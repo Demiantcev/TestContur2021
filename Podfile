@@ -9,5 +9,6 @@ target 'TestConturAlamofire' do
     pod 'Alamofire'
     pod 'SnapKit', '~> 5.0.0'
     pod 'SwiftyJSON', '~> 4.0'
+    pod 'AlamofireImage', '~> 4.1'
 
 end

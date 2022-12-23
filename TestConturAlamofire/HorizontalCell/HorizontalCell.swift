@@ -18,6 +18,7 @@ class HorizontalCell: UICollectionView {
     private let paramLayout = UICollectionViewFlowLayout()
     private let nameParamArray = ["Высота,m", "Диаметр,m", "Масса,kg", "Нагрузка,kg"]
     var characteristicsArray: [Any] = []
+    var ff: [СharacteristicForCells] = []
     
     weak var cellDelegate: SelectCollectionViewItemProtocol?
     
@@ -50,27 +51,21 @@ class HorizontalCell: UICollectionView {
         AF.request("https://api.spacexdata.com/v4/rockets").responseJSON { responseJSON in
             switch responseJSON.result {
             case .success(let value):
-                let json = JSON(value)
-                //                let arrayCount = json.arrayValue
-                //                let firstArray = json[0]
-                for (_, data) in json[0, "payload_weights"] {
-                    let kg = data["kg"].intValue
-                    let param = [json[0, "height", "meters"].doubleValue, json[2, "diameter","meters"].doubleValue, json[2, "mass", "kg"].intValue]
-                        
-                    self.characteristicsArray.append(contentsOf: param)
-                    self.characteristicsArray.append(kg)
-                    
-                }
-                
-//                for itm in 0...json.count-1 {
-//                    print("height",json[itm,"height"], "diameter", json[itm, "diameter"],"mass", json[itm, "mass"], "payloadWeights", json[itm][ "payload_weights"].arrayValue.map{$0["kg"]})
 
-//                    let p = Сharacteristics(json: itm)
+//                for (_, data) in json {
+//                    let kg = data["payload_weights"].arrayValue.map{$0["kg"].intValue}
+//                    let param = [data["height", "meters"].doubleValue, data["diameter","meters"].doubleValue, data["mass", "kg"].intValue, data["payload_weights"].arrayValue.map{$0["kg"].intValue} ]
 //
-//                    let p = Сharacteristics(height: json[0, "height", "meters"].doubleValue, diameter: json[0, "diameter","meters"].doubleValue, mass: json[0, "mass", "kg"].intValue)
-                
+//                    self.characteristicsArray.append(contentsOf: param)
+//                    self.characteristicsArray.append(kg)
 
-                    
+//                }
+//                let arrayCount = json.arrayValue
+//                for itm in arrayCount {
+//
+//                    let p = СharacteristicForCells(json: itm)
+//                    self.ff.append(p)
+//
 //                }
                 
                 DispatchQueue.main.async {
@@ -111,3 +106,6 @@ class HorizontalCell: UICollectionView {
         }
     }
 
+
+// Картинки парсятся из каждого экземпляра рандомно доработать
+// Сделать парсинг одного экземпляра!
