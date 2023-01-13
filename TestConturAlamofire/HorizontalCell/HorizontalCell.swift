@@ -82,13 +82,13 @@ class HorizontalCell: UICollectionView {
     extension HorizontalCell: UICollectionViewDataSource {
         func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
             
-            return self.characteristicsArray.count
+            return 4
         }
         
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? HorizintalViewCell else { return UICollectionViewCell() }
             cell.secondLabel.text = nameParamArray[indexPath.item]
-            cell.firstLabel.text = "\(self.characteristicsArray[indexPath.item])"
+//            cell.firstLabel.text = "\(self.characteristicsArray[indexPath.item])"
             return cell
         }
     }
@@ -105,7 +105,3 @@ class HorizontalCell: UICollectionView {
                           height: 96)
         }
     }
-
-
-// Картинки парсятся из каждого экземпляра рандомно доработать
-// Сделать парсинг одного экземпляра!

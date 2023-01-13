@@ -1,13 +1,13 @@
 //
-//  ContentView.swift
+//  MyViewController.swift
 //  TestConturAlamofire
 //
-//  Created by Кирилл Демьянцев on 30.10.2022.
+//  Created by Кирилл Демьянцев on 09.01.2023.
 //
 
 import UIKit
 
-class ContentView: UIView {
+class MyViewController: UIViewController {
     
     let collectionCell = HorizontalCell()
     
@@ -84,7 +84,7 @@ class ContentView: UIView {
        stackView.translatesAutoresizingMaskIntoConstraints = false
        stackView.axis = .vertical
        stackView.spacing = 16
-        stackView.distribution = .equalSpacing
+       stackView.distribution = .equalSpacing
        return stackView
    }()
     
@@ -290,19 +290,60 @@ class ContentView: UIView {
         return button
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        self.translatesAutoresizingMaskIntoConstraints = false
-        setupConstraint()
+    init(rocketWith: RocketInfo) {
+        super.init(nibName: nil, bundle: nil)
+//        edgesForExtendedLayout = []
+        nameLabel.text = rocketWith.name
+        infoCountryLabel.text = rocketWith.country
+        infoFirstFlightLabel.text = setDateFormat(date: rocketWith.firstFlight)
+        infoCostPerLaunchLabel.text = "\(rocketWith.costPerLaunch)"
+        enginesLabel2.text = "\(rocketWith.firstStage.engines)"
+        fuelAmountTonsLabel2.text =  "\(rocketWith.firstStage.fuelAmountTons)"
+        burnTimeSecLabel2.text = "\(rocketWith.firstStage.burnTimeSec)"
+        secondEnginesLabel.text = "\(rocketWith.secondStage.engines)"
+        secondFuelAmountTonsLabel.text = "\(rocketWith.secondStage.fuelAmountTons)"
+        secondBurnTimeSecLabel.text = "\(rocketWith.secondStage.burnTimeSec)"
+        if let image = rocketWith.flickrImages.randomElement() {
+
+            DispatchQueue.global().async {
+                guard let url = URL(string: image) else { return }
+                if let data = try? Data(contentsOf: url) {
+                    if let image1 = UIImage(data: data) {
+                        DispatchQueue.main.async {
+                            self.imageRocket.image = image1
+                        }
+                    }
+                }
+            }
+        }
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func setDateFormat(date: String) -> String {
+        let dateForamatter = DateFormatter()
+        dateForamatter.dateFormat = "yyyy'-'MM'-'dd"
+        
+        guard let backendDate = dateForamatter.date(from: date) else { return  ""}
+        
+        let formatDate = DateFormatter()
+        formatDate.dateFormat = "dd-MM-yyyy"
+        let date = formatDate.string(from: backendDate)
+        return date
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setupConstraint()
+
+    }
+
     func setupConstraint() {
         
-        self.addSubview(scrollContent)
+        view.addSubview(scrollContent)
         scrollContent.addSubview(imageRocket)
         scrollContent.addSubview(viewS)
         viewS.addSubview(nameLabel)
@@ -338,21 +379,24 @@ class ContentView: UIView {
         
         NSLayoutConstraint.activate([
             
-            scrollContent.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            scrollContent.widthAnchor.constraint(equalTo: self.widthAnchor),
-            scrollContent.topAnchor.constraint(equalTo: self.topAnchor),
-            scrollContent.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            scrollContent.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollContent.widthAnchor.constraint(equalTo: view.widthAnchor),
+            scrollContent.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollContent.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollContent.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
             imageRocket.centerXAnchor.constraint(equalTo: scrollContent.centerXAnchor),
-            imageRocket.widthAnchor.constraint(equalTo: scrollContent.widthAnchor),
             imageRocket.topAnchor.constraint(equalTo: scrollContent.topAnchor),
-            imageRocket.heightAnchor.constraint(equalTo: scrollContent.heightAnchor),
+            imageRocket.trailingAnchor.constraint(equalTo: scrollContent.trailingAnchor),
+            imageRocket.leadingAnchor.constraint(equalTo: scrollContent.leadingAnchor),
             
             viewS.topAnchor.constraint(equalTo: scrollContent.centerYAnchor),
             viewS.heightAnchor.constraint(equalTo: scrollContent.heightAnchor),
+            viewS.leadingAnchor.constraint(equalTo: scrollContent.leadingAnchor),
+            viewS.trailingAnchor.constraint(equalTo: scrollContent.trailingAnchor),
             viewS.bottomAnchor.constraint(equalTo: scrollContent.bottomAnchor),
             viewS.widthAnchor.constraint(equalTo: scrollContent.widthAnchor),
-            
+       
             nameLabel.topAnchor.constraint(equalTo: viewS.topAnchor, constant: 48),
             nameLabel.leadingAnchor.constraint(equalTo: viewS.leadingAnchor, constant: 32),
             
@@ -366,15 +410,15 @@ class ContentView: UIView {
             firstStackView.trailingAnchor.constraint(equalTo: viewS.trailingAnchor, constant: -167),
             
             secondStackView.topAnchor.constraint(equalTo: firstStackView.topAnchor),
-            secondStackView.trailingAnchor.constraint(equalTo: viewS.trailingAnchor, constant: -32),
-            secondStackView.leadingAnchor.constraint(equalTo: firstStackView.trailingAnchor),
+            secondStackView.trailingAnchor.constraint(equalTo: viewS.trailingAnchor),
+            secondStackView.leadingAnchor.constraint(equalTo: firstStackView.trailingAnchor, constant: 80),
             secondStackView.bottomAnchor.constraint(equalTo: firstStageLabel.topAnchor, constant: -40),
             
             firstStageLabel.topAnchor.constraint(equalTo: firstStackView.bottomAnchor, constant: 40),
             firstStageLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
             
             thirdStackView.topAnchor.constraint(equalTo: firstStageLabel.bottomAnchor, constant: 16),
-            thirdStackView.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
+//            thirdStackView.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
             thirdStackView.trailingAnchor.constraint(equalTo: viewS.trailingAnchor, constant: -167),
             
             fourthStackView.topAnchor.constraint(equalTo: thirdStackView.topAnchor),
@@ -393,11 +437,13 @@ class ContentView: UIView {
             launchButton.leadingAnchor.constraint(equalTo: viewS.leadingAnchor, constant: 32),
             launchButton.trailingAnchor.constraint(equalTo: viewS.trailingAnchor, constant: -32),
             launchButton.heightAnchor.constraint(equalToConstant: 55),
+//            launchButton.bottomAnchor.constraint(equalTo: viewS.bottomAnchor),
             
             setupButton.topAnchor.constraint(equalTo: viewS.topAnchor, constant: 50.67),
             setupButton.trailingAnchor.constraint(equalTo: viewS.trailingAnchor, constant: -35.62),
             
-            
         ])
     }
 }
+
+// Разобраться с констрейнтами у первого стэка

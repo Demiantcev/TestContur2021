@@ -81,11 +81,9 @@ struct RocketInfo {
         var rockets: [RocketInfo] = []
         
         for jsonObject in jsonArray {
-            guard let rocket = RocketInfo(json: jsonObject)
-            else {
-                return nil
+            if let rocket = RocketInfo(json: jsonObject) {
+                rockets.append(rocket)
             }
-            rockets.append(rocket)
         }
         return rockets
     }
