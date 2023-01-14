@@ -22,6 +22,16 @@ struct RocketInfo {
     let firstStage: FirstStage
     let secondStage: SecondStage
     
+    var countryString: String {
+        switch country {
+        case "Republic of the Marshall Islands" : return "Маршалловы о-ва"
+        case "United States"                    : return "США"
+            
+        default:
+           return "Загрузка..."
+        }
+    }
+    
     init?(json: [String: Any]) {
 //        self.flickrImages = json["flickr_images"] as! [String]
 //        self.name = json["name"] as! String

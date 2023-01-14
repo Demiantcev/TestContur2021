@@ -100,7 +100,6 @@ class MyViewController: UIViewController {
        var label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "nil"
-        label.numberOfLines = 0
         label.textColor = .white
         return label
     }()
@@ -292,11 +291,11 @@ class MyViewController: UIViewController {
     
     init(rocketWith: RocketInfo) {
         super.init(nibName: nil, bundle: nil)
-//        edgesForExtendedLayout = []
+
         nameLabel.text = rocketWith.name
-        infoCountryLabel.text = rocketWith.country
+        infoCountryLabel.text = rocketWith.countryString
         infoFirstFlightLabel.text = setDateFormat(date: rocketWith.firstFlight)
-        infoCostPerLaunchLabel.text = "\(rocketWith.costPerLaunch)"
+        infoCostPerLaunchLabel.text = formatPoints(from: rocketWith.costPerLaunch)
         enginesLabel2.text = "\(rocketWith.firstStage.engines)"
         fuelAmountTonsLabel2.text =  "\(rocketWith.firstStage.fuelAmountTons)"
         burnTimeSecLabel2.text = "\(rocketWith.firstStage.burnTimeSec)"
@@ -329,9 +328,21 @@ class MyViewController: UIViewController {
         guard let backendDate = dateForamatter.date(from: date) else { return  ""}
         
         let formatDate = DateFormatter()
-        formatDate.dateFormat = "dd-MM-yyyy"
+        formatDate.dateFormat = "dd MMMM,yyyy"
         let date = formatDate.string(from: backendDate)
         return date
+    }
+    
+    func formatPoints(from: Int) -> String {
+
+        let number = Int(from)
+        let million = number / 1000000
+        
+         if million >= 7 {
+             return "$\((million * 10)/10) млн"
+         } else {
+            return "$\(Double(number) / 1000000) млн"
+        }
     }
     
     override func viewDidLoad() {
@@ -411,14 +422,13 @@ class MyViewController: UIViewController {
             
             secondStackView.topAnchor.constraint(equalTo: firstStackView.topAnchor),
             secondStackView.trailingAnchor.constraint(equalTo: viewS.trailingAnchor),
-            secondStackView.leadingAnchor.constraint(equalTo: firstStackView.trailingAnchor, constant: 80),
+            secondStackView.leadingAnchor.constraint(equalTo: firstStackView.trailingAnchor, constant: 15),
             secondStackView.bottomAnchor.constraint(equalTo: firstStageLabel.topAnchor, constant: -40),
             
             firstStageLabel.topAnchor.constraint(equalTo: firstStackView.bottomAnchor, constant: 40),
             firstStageLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
             
             thirdStackView.topAnchor.constraint(equalTo: firstStageLabel.bottomAnchor, constant: 16),
-//            thirdStackView.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
             thirdStackView.trailingAnchor.constraint(equalTo: viewS.trailingAnchor, constant: -167),
             
             fourthStackView.topAnchor.constraint(equalTo: thirdStackView.topAnchor),
@@ -437,7 +447,6 @@ class MyViewController: UIViewController {
             launchButton.leadingAnchor.constraint(equalTo: viewS.leadingAnchor, constant: 32),
             launchButton.trailingAnchor.constraint(equalTo: viewS.trailingAnchor, constant: -32),
             launchButton.heightAnchor.constraint(equalToConstant: 55),
-//            launchButton.bottomAnchor.constraint(equalTo: viewS.bottomAnchor),
             
             setupButton.topAnchor.constraint(equalTo: viewS.topAnchor, constant: 50.67),
             setupButton.trailingAnchor.constraint(equalTo: viewS.trailingAnchor, constant: -35.62),
@@ -445,5 +454,3 @@ class MyViewController: UIViewController {
         ])
     }
 }
-
-// Разобраться с констрейнтами у первого стэка
