@@ -15,10 +15,24 @@ class SettingsViewController: UIViewController {
         var label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Настройки"
-        label.font = .systemFont(ofSize: 20, weight: .bold)
+        label.font = .systemFont(ofSize: 17, weight: .bold)
         label.textColor = .white
         return label
     }()
+    
+    lazy var closeButton: UIButton = {
+       var button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Закрыть", for: .normal)
+        button.setTitleColor(.blue, for: .normal)
+        button.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 18)
+        button.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc func tapButton() {
+        self.dismiss(animated: true)
+        }
     
     let heightLabel: UILabel = {
         var label = UILabel()
@@ -33,7 +47,7 @@ class SettingsViewController: UIViewController {
         var segmented = UISegmentedControl(items: ["m", "ft"])
         segmented.translatesAutoresizingMaskIntoConstraints = false
         segmented.backgroundColor = #colorLiteral(red: 0.2077701986, green: 0.2103852332, blue: 0.2103391886, alpha: 1)
-//        segmented.selectedSegmentIndex = 0
+        segmented.selectedSegmentIndex = 0
         segmented.addTarget(self, action: #selector(heightTarget), for: .valueChanged)
         return segmented
     }()
@@ -60,7 +74,7 @@ class SettingsViewController: UIViewController {
         var segmented = UISegmentedControl(items: ["m", "ft"])
         segmented.translatesAutoresizingMaskIntoConstraints = false
         segmented.backgroundColor = #colorLiteral(red: 0.2077701986, green: 0.2103852332, blue: 0.2103391886, alpha: 1)
-//        segmented.selectedSegmentIndex = 0
+        segmented.selectedSegmentIndex = 0
         segmented.addTarget(self, action: #selector(diameterTarget), for: .valueChanged)
         return segmented
     }()
@@ -87,7 +101,7 @@ class SettingsViewController: UIViewController {
         var segmented = UISegmentedControl(items: ["kg", "lb"])
         segmented.translatesAutoresizingMaskIntoConstraints = false
         segmented.backgroundColor = #colorLiteral(red: 0.2077701986, green: 0.2103852332, blue: 0.2103391886, alpha: 1)
-//        segmented.selectedSegmentIndex = 0
+        segmented.selectedSegmentIndex = 0
         segmented.addTarget(self, action: #selector(massTarget), for: .valueChanged)
         return segmented
     }()
@@ -115,7 +129,7 @@ class SettingsViewController: UIViewController {
         var segmented = UISegmentedControl(items: ["kg", "lb"])
         segmented.translatesAutoresizingMaskIntoConstraints = false
         segmented.backgroundColor = #colorLiteral(red: 0.2077701986, green: 0.2103852332, blue: 0.2103391886, alpha: 1)
-//        segmented.selectedSegmentIndex = 0
+        segmented.selectedSegmentIndex = 0
         segmented.addTarget(self, action: #selector(payLoadTarget), for: .valueChanged)
         return segmented
     }()
@@ -135,6 +149,7 @@ class SettingsViewController: UIViewController {
         setupConstraint()
         setupSegmentState()
         view.backgroundColor = .black
+        navigationItem.titleView = titleLabel
     }
     
     private func setupSegmentState() {
@@ -154,6 +169,7 @@ class SettingsViewController: UIViewController {
     
     func setupConstraint() {
         view.addSubview(titleLabel)
+        view.addSubview(closeButton)
         view.addSubview(heightLabel)
         view.addSubview(diameterLabel)
         view.addSubview(massLabel)
@@ -165,8 +181,12 @@ class SettingsViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             
-            titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
+            titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 30),
             titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+//            closeButton.topAnchor.constraint(equalTo: titleLabel.topAnchor),
+            closeButton.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
+            closeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             
             heightLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 150),
             heightLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),

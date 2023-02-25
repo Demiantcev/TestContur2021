@@ -85,7 +85,7 @@ class ImageCell: UICollectionViewCell {
         
         NSLayoutConstraint.activate([
             
-            imageRocket.topAnchor.constraint(equalTo: self.topAnchor),
+            imageRocket.topAnchor.constraint(equalTo: self.topAnchor, constant: -50),
             imageRocket.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             imageRocket.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             imageRocket.bottomAnchor.constraint(equalTo: self.bottomAnchor),

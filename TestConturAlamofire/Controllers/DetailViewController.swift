@@ -18,6 +18,7 @@ class DetailViewController: UIViewController, PresentLaunchVC, PresentSettingVC 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupCollectionView()
         createDataSource()
         reload()
