@@ -31,7 +31,10 @@ class SettingsViewController: UIViewController {
     }()
     
     @objc func tapButton() {
-        self.dismiss(animated: true)
+        if segmentedChange {
+            NotificationCenter.default.post(name: Notification.Name("reloadData"), object: nil)
+        }
+        self.presentingViewController?.dismiss(animated: true)
         }
     
     let heightLabel: UILabel = {
