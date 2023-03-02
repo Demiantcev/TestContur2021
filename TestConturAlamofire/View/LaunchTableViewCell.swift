@@ -42,7 +42,7 @@ class LaunchTableViewCell: UITableViewCell {
         image.contentMode = .scaleAspectFit
         return image
     }()
-
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -82,7 +82,7 @@ class LaunchTableViewCell: UITableViewCell {
             imageRocket.trailingAnchor.constraint(equalTo: backView.trailingAnchor, constant: -10),
             imageRocket.heightAnchor.constraint(equalToConstant: 40),
             imageRocket.widthAnchor.constraint(equalToConstant: 40)
-        
+            
         ])
     }
 }

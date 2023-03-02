@@ -12,7 +12,7 @@ class StageHeaderCell: UICollectionReusableView {
     static var reuseId = "StageHeaderCell"
     
     let headerStageLabel: UILabel = {
-       var label = UILabel()
+        var label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 23, weight: .bold)
         label.textColor = .white
@@ -42,8 +42,7 @@ class StageHeaderCell: UICollectionReusableView {
             headerStageLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             headerStageLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             headerStageLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor)
-        
+            
         ])
     }
-    
 }

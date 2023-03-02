@@ -5,7 +5,6 @@
 //  Created by Кирилл Демьянцев on 28.01.2023.
 //
 
-import Foundation
 import UIKit
 
 enum NetworkManagerError: Error {
@@ -48,7 +47,7 @@ final class NetworkAPI {
         }
         task.resume()
     }
-
+    
     func image(post: RocketInfo, completion: @escaping (Data?, Error?) -> Void) {
         guard let flickrImagesRandom = post.flickrImages.randomElement() else {
             return
@@ -60,7 +59,7 @@ final class NetworkAPI {
             self.download(imageURL: url, completion: completion)
         }
     }
-
+    
     func image(data: Data?) -> UIImage? {
         if let data = data {
             return UIImage(data: data)

@@ -22,28 +22,28 @@ class DetailViewController: UIViewController, PresentLaunchVC, PresentSettingVC 
         setupCollectionView()
         createDataSource()
         reload()
-                NotificationCenter.default.addObserver(
-                    self,
-                    selector: #selector(reload),
-                    name: Notification.Name("reloadData"),
-                    object: nil
-                )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(reload),
+            name: Notification.Name("reloadData"),
+            object: nil
+        )
     }
-        @objc
-        private func reload() {
-            AF.request("https://api.spacexdata.com/v4/rockets").responseJSON { [self] responseJSON in
-                switch responseJSON.result {
-                case .success(let value):
-
-                    guard let rocket = RocketInfo.getArray(from: value) else { return }
-                    self.rockets = rocket
-                    
-                    self.reloadData()
-                case .failure(let error):
-                    print(error)
-                }
+    @objc
+    private func reload() {
+        AF.request("https://api.spacexdata.com/v4/rockets").responseJSON { [self] responseJSON in
+            switch responseJSON.result {
+            case .success(let value):
+                
+                guard let rocket = RocketInfo.getArray(from: value) else { return }
+                self.rockets = rocket
+                
+                self.reloadData()
+            case .failure(let error):
+                print(error)
             }
         }
+    }
     
     static func getInstance(index: Int) -> DetailViewController {
         let page = DetailViewController()
@@ -128,6 +128,7 @@ class DetailViewController: UIViewController, PresentLaunchVC, PresentSettingVC 
             case .imageSection:
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCell.reuseId, for: indexPath) as? ImageCell else { return UICollectionViewCell()
                 }
+                
                 self.networkAPI.image(post: self.rockets[self.index]) { data, _ in
                     DispatchQueue.main.async {
                         let img = self.networkAPI.image(data: data)

@@ -24,15 +24,15 @@ class LaunchViewController: UIViewController {
     }()
     
     let titleLabel: UILabel = {
-       var label = UILabel()
+        var label = UILabel()
         label.font = .systemFont(ofSize: 20, weight: .bold)
         label.textColor = .white
         return label
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         parseJsonLaunch()
         setupConstraint()
         setupNavigation()
@@ -58,20 +58,20 @@ class LaunchViewController: UIViewController {
         navigationItem.setHidesBackButton(false, animated: true)
         navigationItem.titleView = titleLabel
     }
-
+    
     func parseJsonLaunch() {
         AF.request("https://api.spacexdata.com/v4/launches").responseJSON { responce in
             switch responce.result {
             case .success(let value):
                 
                 guard let launchJson = LaunchInfo.getArray(from: value) else { return }
-
+                
                 for element in launchJson {
                     if element.rocket == self.rocketId && self.rocketId != nil {
                         self.launch.append(element)
                     }
                 }
-                    self.tableViewLaunch.reloadData()
+                self.tableViewLaunch.reloadData()
                 
             case .failure(let error):
                 print(error)
@@ -81,13 +81,13 @@ class LaunchViewController: UIViewController {
 }
 extension LaunchViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
+        
         if launch.count > 1 {
             self.tableViewLaunch.restore()
         } else {
             self.tableViewLaunch.emptyLabel("Запусков не производилось!")
         }
-        return self.launch.count
+        return launch.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -99,6 +99,4 @@ extension LaunchViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 130
     }
-    
-    
 }

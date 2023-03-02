@@ -22,7 +22,6 @@
 		EB621A69298678A00016738C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB621A68298678A00016738C /* DetailViewController.swift */; };
 		EB63F8A9298FC4E5009CBE11 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB63F8A8298FC4E5009CBE11 /* SettingsViewController.swift */; };
 		EB86B416296C5C8C00F23D5F /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB86B415296C5C8C00F23D5F /* MyPageViewController.swift */; };
-		EB86B418296C5D3B00F23D5F /* MyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB86B417296C5D3A00F23D5F /* MyViewController.swift */; };
 		EB99C1332985708A00C1AC8C /* URLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB99C1322985708A00C1AC8C /* URLSession.swift */; };
 		EB99C1362985738200C1AC8C /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB99C1352985738200C1AC8C /* ImageCell.swift */; };
 		EBC73F7C28B4DB88003C7CE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC73F7B28B4DB88003C7CE3 /* AppDelegate.swift */; };
@@ -50,7 +49,6 @@
 		EB621A68298678A00016738C /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		EB63F8A8298FC4E5009CBE11 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		EB86B415296C5C8C00F23D5F /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
-		EB86B417296C5D3A00F23D5F /* MyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyViewController.swift; sourceTree = "<group>"; };
 		EB99C1322985708A00C1AC8C /* URLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSession.swift; sourceTree = "<group>"; };
 		EB99C1352985738200C1AC8C /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		EBC73F7828B4DB88003C7CE3 /* TestConturAlamofire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestConturAlamofire.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,7 +104,6 @@
 			children = (
 				EB86B415296C5C8C00F23D5F /* MyPageViewController.swift */,
 				EB5E5B6E297D88DD00E06B5B /* LaunchViewController.swift */,
-				EB86B417296C5D3A00F23D5F /* MyViewController.swift */,
 				EB621A68298678A00016738C /* DetailViewController.swift */,
 				EB63F8A8298FC4E5009CBE11 /* SettingsViewController.swift */,
 			);
@@ -302,7 +299,6 @@
 				EB5E5B6F297D88DD00E06B5B /* LaunchViewController.swift in Sources */,
 				EB14DDCF2982BFBD00574557 /* Int + Extension.swift in Sources */,
 				EBC73F7C28B4DB88003C7CE3 /* AppDelegate.swift in Sources */,
-				EB86B418296C5D3B00F23D5F /* MyViewController.swift in Sources */,
 				EB621A63298673AE0016738C /* ButtonCell.swift in Sources */,
 				EB5E5B71297D8BD200E06B5B /* LaunchTableViewCell.swift in Sources */,
 				EBEFB2E1298EC7A600F9DEF7 /* TableView + Extension.swift in Sources */,

@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Alamofire
 
 class MyPageViewController: UIPageViewController {
     
@@ -28,7 +27,7 @@ class MyPageViewController: UIPageViewController {
             DetailViewController.getInstance(index: 2),
             DetailViewController.getInstance(index: 3)
         ]
-
+        
         setViewControllers([myRocket[0]], direction: .forward, animated: true)
     }
     

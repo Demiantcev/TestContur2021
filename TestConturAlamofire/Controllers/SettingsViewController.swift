@@ -21,7 +21,7 @@ class SettingsViewController: UIViewController {
     }()
     
     lazy var closeButton: UIButton = {
-       var button = UIButton()
+        var button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Закрыть", for: .normal)
         button.setTitleColor(.blue, for: .normal)
@@ -35,7 +35,7 @@ class SettingsViewController: UIViewController {
             NotificationCenter.default.post(name: Notification.Name("reloadData"), object: nil)
         }
         self.presentingViewController?.dismiss(animated: true)
-        }
+    }
     
     let heightLabel: UILabel = {
         var label = UILabel()
@@ -145,7 +145,7 @@ class SettingsViewController: UIViewController {
             forKey: Params.payWeight.rawValue)
         segmentedChange = true
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -187,7 +187,6 @@ class SettingsViewController: UIViewController {
             titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 30),
             titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-//            closeButton.topAnchor.constraint(equalTo: titleLabel.topAnchor),
             closeButton.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
             closeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             

@@ -25,7 +25,7 @@ class HorizontalViewCell: UICollectionViewCell {
         label.textAlignment = .center
         label.textColor = .white
         label.font = UIFont(name: "Arial Bold", size: 19)
-       return label
+        return label
     }()
     
     let secondLabel: UILabel = {
@@ -34,7 +34,7 @@ class HorizontalViewCell: UICollectionViewCell {
         label.textAlignment = .center
         label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.8470588235)
         label.font = UIFont(name: "Arial Bold", size: 14)
-       return label
+        return label
     }()
     
     override init(frame: CGRect) {

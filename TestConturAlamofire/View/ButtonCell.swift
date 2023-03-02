@@ -36,7 +36,7 @@ class ButtonCell: UICollectionViewCell {
     
     @objc func tapButton() {
         self.delegate.presentLaunch()
-        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -63,7 +63,7 @@ class ButtonCell: UICollectionViewCell {
             launchButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
             launchButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
             launchButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20)
-        
+            
         ])
     }
 }

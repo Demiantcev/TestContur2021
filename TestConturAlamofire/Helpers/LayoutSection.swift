@@ -5,7 +5,6 @@
 //  Created by Кирилл Демьянцев on 29.01.2023.
 //
 
-import Foundation
 import UIKit
 
 struct Cell: Hashable {
@@ -91,7 +90,7 @@ extension DetailViewController {
         )
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: item, count: 1)
         group.contentInsets = .init(top: 1.0, leading: 5.0, bottom: 1.0, trailing: 5.0)
-
+        
         let rootGroupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0 / 3.5),
             heightDimension: .fractionalHeight(1.0 / 7.5)
@@ -237,7 +236,5 @@ extension DetailViewController {
         section.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 0, bottom: 0, trailing: 0)
         return section
     }
-    
-    
 }
 

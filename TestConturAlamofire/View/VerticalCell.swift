@@ -18,14 +18,14 @@ class VerticalCell: UICollectionViewCell {
     }()
     
     let leftLabel: UILabel = {
-       var label = UILabel()
+        var label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .white
         return label
     }()
     
     let rightLabel: UILabel = {
-       var label = UILabel()
+        var label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "nil"
         label.textColor = .white
@@ -65,10 +65,7 @@ class VerticalCell: UICollectionViewCell {
             rightLabel.topAnchor.constraint(equalTo: leftLabel.topAnchor),
             rightLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -10),
             rightLabel.bottomAnchor.constraint(equalTo: leftLabel.bottomAnchor)
-        
+            
         ])
     }
-    
-    
-    
 }
