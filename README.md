@@ -1,7 +1,5 @@
 # TestContur2021
 
-Тестовое задание от команды СКБ Контур.
-
 **Technology stack**
 
 * UIKit
